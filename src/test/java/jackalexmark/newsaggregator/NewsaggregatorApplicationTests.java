@@ -1,6 +1,7 @@
 package jackalexmark.newsaggregator;
 
 import jackalexmark.newsaggregator.models.Journalist;
+import jackalexmark.newsaggregator.models.Publisher;
 import jackalexmark.newsaggregator.models.Source;
 import jackalexmark.newsaggregator.models.Story;
 import org.junit.Before;
@@ -44,6 +45,12 @@ class NewsaggregatorApplicationTests {
 	public void canGetStoryTitle(){
 		Story story = new Story("Pub chain has no choice but to open on 4th July");
 		assertEquals("Pub chain has no choice but to open on 4th July", story.getTitle());
+	}
+
+	@Test
+	public void canGetPublisherName(){
+		Publisher publisher = new Publisher("The Guardian");
+		assertEquals("The Guardian", publisher.getName());
 	}
 
 
