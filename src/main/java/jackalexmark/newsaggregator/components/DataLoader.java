@@ -1,8 +1,10 @@
 package jackalexmark.newsaggregator.components;
 
+import jackalexmark.newsaggregator.models.Journalist;
 import jackalexmark.newsaggregator.models.Publisher;
 import jackalexmark.newsaggregator.models.Source;
 import jackalexmark.newsaggregator.models.Story;
+import jackalexmark.newsaggregator.repository.JournalistRepository;
 import jackalexmark.newsaggregator.repository.PublisherRepository;
 import jackalexmark.newsaggregator.repository.SourceRepository;
 import jackalexmark.newsaggregator.repository.StoryRepository;
@@ -23,6 +25,9 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     SourceRepository sourceRepository;
 
+    @Autowired
+    JournalistRepository journalistRepository;
+
     public DataLoader() {
 
     }
@@ -36,5 +41,8 @@ public class DataLoader implements ApplicationRunner {
 
         Source source = new Source("Sample Source Title", "Sample Source Link", "Sample Source Link");
         sourceRepository.save(source);
+
+        Journalist journalist = new Journalist("Sample Journalist Name");
+        journalistRepository.save(journalist);
     }
 }
