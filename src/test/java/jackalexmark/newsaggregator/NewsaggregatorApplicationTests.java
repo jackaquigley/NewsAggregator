@@ -78,4 +78,16 @@ class NewsaggregatorApplicationTests {
 		journalistRepository.save(journalist);
 	}
 
+	@Test
+	public void canCreateAndSaveSource(){
+		Source source = new Source ("The Sun", "Image Link", "Source Link");
+		sourceRepository.save(source);
+	}
+
+	@Test
+	public void canCreateAndSaveStory(){
+		Story story = new Story("HeadLine");
+		storyRepository.save(story);
+	}
+
 }
