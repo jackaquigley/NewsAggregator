@@ -1,10 +1,17 @@
 package jackalexmark.newsaggregator.models;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
+@Table(name = "stories")
 public class Story implements Serializable {
 
+    @Id
+    @GeneratedValue
     private Long id;
+
+    @Column(name = "title")
     private String title;
 
     public Story(String title){
