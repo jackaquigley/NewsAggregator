@@ -42,7 +42,7 @@ public class DataLoader implements ApplicationRunner {
         Source source = new Source("Sample Source Title", "Sample Source Link", "Sample Source Link");
         sourceRepository.save(source);
 
-        Journalist journalist = new Journalist("Sample Journalist Name");
+        Journalist journalist = new Journalist("Sample Journalist Name", publisher);
         journalistRepository.save(journalist);
     }
 }

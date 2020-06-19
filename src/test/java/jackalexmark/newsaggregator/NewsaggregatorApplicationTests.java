@@ -1,11 +1,9 @@
 package jackalexmark.newsaggregator;
 
-import jackalexmark.newsaggregator.models.Journalist;
-import jackalexmark.newsaggregator.models.Publisher;
-import jackalexmark.newsaggregator.models.Source;
-import jackalexmark.newsaggregator.models.Story;
-import org.junit.Before;
+import jackalexmark.newsaggregator.models.*;
+import jackalexmark.newsaggregator.repository.*;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,13 +11,26 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class NewsaggregatorApplicationTests {
 
+	@Autowired
+	JournalistRepository journalistRepository;
+
+	@Autowired
+	PublisherRepository publisherRepository;
+
+	@Autowired
+	SourceRepository sourceRepository;
+
+	@Autowired
+	StoryRepository storyRepository;
+
 	@Test
 	void contextLoads() {
 	}
 
 	@Test
 	public void canGetJournalistName(){
-		Journalist journalist = new Journalist ("Bob Smith");
+		Publisher publisher = new Publisher("BBC");
+		Journalist journalist = new Journalist ("Bob Smith", publisher);
 		assertEquals("Bob Smith", journalist.getName());
 	}
 
@@ -53,5 +64,10 @@ class NewsaggregatorApplicationTests {
 		assertEquals("The Guardian", publisher.getName());
 	}
 
+	@Test
+	public void canCreateAndSavePublisher(){
+		Publisher publisher = new Publisher("Daily Mail");
+		publisherRepository.save(publisher);
+	}
 
 }

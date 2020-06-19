@@ -1,5 +1,7 @@
 package jackalexmark.newsaggregator.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -13,6 +15,20 @@ public class Journalist implements Serializable {
 
     @Column(name = "name")
     private String name;
+
+    @JsonIgnoreProperties(value="journalists")
+    @ManyToOne
+    @JoinColumn(name = "publisher_id", nullable = false)
+    private Publisher publisher;
+
+    public Journalist(String name, Publisher publisher) {
+        this.name = name;
+        this.publisher = publisher;
+    }
+
+    public Journalist() {
+
+    }
 
     public Long getId() {
         return id;
@@ -30,11 +46,11 @@ public class Journalist implements Serializable {
         this.name = name;
     }
 
-    public Journalist(String name) {
-        this.name = name;
+    public Publisher getPublisher() {
+        return publisher;
     }
 
-    public Journalist() {
-
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 }
