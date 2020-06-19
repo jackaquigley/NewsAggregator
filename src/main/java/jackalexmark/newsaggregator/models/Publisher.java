@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,8 +22,13 @@ public class Publisher implements Serializable {
     @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY)
     private List<Journalist> journalists;
 
+
     public Publisher(String name) {
         this.name = name;
+    }
+
+    public Publisher(){
+
     }
 
     public String getName() {
@@ -33,7 +39,20 @@ public class Publisher implements Serializable {
         this.name = name;
     }
 
-    public Publisher(){
-
+    public Long getId() {
+        return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Journalist> getJournalists() {
+        return journalists;
+    }
+
+    public void setJournalists(List<Journalist> journalists) {
+        this.journalists = journalists;
+    }
+
 }

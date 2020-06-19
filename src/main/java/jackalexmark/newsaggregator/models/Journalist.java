@@ -1,6 +1,7 @@
 package jackalexmark.newsaggregator.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,6 +20,7 @@ public class Journalist implements Serializable {
     @JsonIgnoreProperties(value="journalists")
     @ManyToOne
     @JoinColumn(name = "publisher_id", nullable = false)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Publisher publisher;
 
     public Journalist(String name, Publisher publisher) {

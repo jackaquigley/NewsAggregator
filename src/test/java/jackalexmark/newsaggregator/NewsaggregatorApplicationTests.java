@@ -70,4 +70,12 @@ class NewsaggregatorApplicationTests {
 		publisherRepository.save(publisher);
 	}
 
+	@Test
+	public void canCreateAndSaveJournalist(){
+		Publisher publisher = new Publisher("Financial Times");
+		Journalist journalist = new Journalist("Sam Smith", publisher);
+		publisherRepository.save(publisher);
+		journalistRepository.save(journalist);
+	}
+
 }
