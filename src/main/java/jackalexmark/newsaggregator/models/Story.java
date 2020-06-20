@@ -28,9 +28,14 @@ public class Story implements Serializable {
     )
     private List<Journalist> journalists;
 
+    @JsonIgnoreProperties(value="story")
+    @OneToMany(mappedBy = "story", fetch = FetchType.LAZY)
+    private List<Source> sources;
+
     public Story(String title){
         this.title = title;
         this.journalists = new ArrayList<Journalist>();
+        this.sources = new ArrayList<Source>();
     }
 
     public Story(){
@@ -63,6 +68,14 @@ public class Story implements Serializable {
 
     public void addJournalist(Journalist journalist){
         this.journalists.add(journalist);
+    }
+
+    public List<Source> getSources() {
+        return sources;
+    }
+
+    public void setSources(List<Source> sources) {
+        this.sources = sources;
     }
 
 }

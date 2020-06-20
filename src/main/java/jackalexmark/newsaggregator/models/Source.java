@@ -1,5 +1,8 @@
 package jackalexmark.newsaggregator.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -23,11 +26,22 @@ public class Source implements Serializable {
     @Column(name ="sourceLink")
     private String sourceLink;
 
+    @Column(name="rating")
+    private int rating;
+
+    @JsonIgnoreProperties(value="source")
+    @ManyToOne
+    @JoinColumn(name = "story_id", nullable = false)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    private Story story;
+
     // this is our constructor - it builds the object with the class Source
-    public Source(String sourceTitle, String sourceImg, String sourceLink){
+    public Source(String sourceTitle, String sourceImg, String sourceLink, Story story, int rating) {
         this.sourceTitle = sourceTitle;
         this.sourceImg = sourceImg;
         this.sourceLink = sourceLink;
+        this.story = story;
+        this.rating = rating;
     }
 
     public String getSourceTitle() {
@@ -52,5 +66,37 @@ public class Source implements Serializable {
 
     public void setSourceLink(String sourceLink) {
         this.sourceLink = sourceLink;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Story getStory() {
+        return story;
+    }
+
+    public void setStory(Story story) {
+        this.story = story;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public int increaseRating(){
+        return this.rating += 1;
+    }
+
+    public int decreaseRating(){
+        return this.rating -= 1;
     }
 }

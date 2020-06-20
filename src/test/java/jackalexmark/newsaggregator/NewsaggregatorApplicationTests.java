@@ -36,20 +36,44 @@ class NewsaggregatorApplicationTests {
 
 	@Test
 	public void canGetSourceTitle(){
-		Source source = new Source("Pub chain has no choice but to open on 4th July", "https://ichef.bbci.co.uk/news/660/cpsprodpb/13A84/production/_112961508_oakmaninnsscreenshot.jpg", "https://www.bbc.co.uk/news/business-53094134");
+		Story story = new Story("Pub chain has no choice but to open on 4th July");
+		Source source = new Source("Pub chain has no choice but to open on 4th July", "https://ichef.bbci.co.uk/news/660/cpsprodpb/13A84/production/_112961508_oakmaninnsscreenshot.jpg", "https://www.bbc.co.uk/news/business-53094134", story, 3);
 		assertEquals("Pub chain has no choice but to open on 4th July", source.getSourceTitle());
 	}
 
 	@Test
 	public void canGetSourceImg(){
-		Source source = new Source("Pub chain has no choice but to open on 4th July", "https://ichef.bbci.co.uk/news/660/cpsprodpb/13A84/production/_112961508_oakmaninnsscreenshot.jpg", "https://www.bbc.co.uk/news/business-53094134");
+		Story story = new Story("Pub chain has no choice but to open on 4th July");
+		Source source = new Source("Pub chain has no choice but to open on 4th July", "https://ichef.bbci.co.uk/news/660/cpsprodpb/13A84/production/_112961508_oakmaninnsscreenshot.jpg", "https://www.bbc.co.uk/news/business-53094134", story, 12);
 		assertEquals("https://ichef.bbci.co.uk/news/660/cpsprodpb/13A84/production/_112961508_oakmaninnsscreenshot.jpg", source.getSourceImg());
 	}
 
 	@Test
 	public void canGetSourceLink(){
-		Source source = new Source("Pub chain has no choice but to open on 4th July", "https://ichef.bbci.co.uk/news/660/cpsprodpb/13A84/production/_112961508_oakmaninnsscreenshot.jpg", "https://www.bbc.co.uk/news/business-53094134");
+		Story story = new Story("Pub chain has no choice but to open on 4th July");
+		Source source = new Source("Pub chain has no choice but to open on 4th July", "https://ichef.bbci.co.uk/news/660/cpsprodpb/13A84/production/_112961508_oakmaninnsscreenshot.jpg", "https://www.bbc.co.uk/news/business-53094134", story, 18);
 		assertEquals("https://www.bbc.co.uk/news/business-53094134", source.getSourceLink());
+	}
+
+	@Test
+	public void canGetSourceRating(){
+		Story story = new Story("Pub chain has no choice but to open on 4th July");
+		Source source = new Source("Pub chain has no choice but to open on 4th July", "https://ichef.bbci.co.uk/news/660/cpsprodpb/13A84/production/_112961508_oakmaninnsscreenshot.jpg", "https://www.bbc.co.uk/news/business-53094134", story, 18);
+		assertEquals(18, source.getRating());
+	}
+
+	@Test
+	public void canIncreaseSourceRating(){
+		Story story = new Story("Pub chain has no choice but to open on 4th July");
+		Source source = new Source("Pub chain has no choice but to open on 4th July", "https://ichef.bbci.co.uk/news/660/cpsprodpb/13A84/production/_112961508_oakmaninnsscreenshot.jpg", "https://www.bbc.co.uk/news/business-53094134", story, 18);
+		assertEquals(19, source.increaseRating());
+	}
+
+	@Test
+	public void canDecreaseSourceRating() {
+		Story story = new Story("Pub chain has no choice but to open on 4th July");
+		Source source = new Source("Pub chain has no choice but to open on 4th July", "https://ichef.bbci.co.uk/news/660/cpsprodpb/13A84/production/_112961508_oakmaninnsscreenshot.jpg", "https://www.bbc.co.uk/news/business-53094134", story, 18);
+		assertEquals(17, source.decreaseRating());
 	}
 
 	@Test
@@ -81,7 +105,8 @@ class NewsaggregatorApplicationTests {
 
 	@Test
 	public void canCreateAndSaveSource(){
-		Source source = new Source ("The Sun", "Image Link", "Source Link");
+		Story story = new Story("Pub chain has no choice but to open on 4th July");
+		Source source = new Source ("The Sun", "Image Link", "Source Link", story, 22);
 		sourceRepository.save(source);
 	}
 
