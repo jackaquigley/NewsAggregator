@@ -5,6 +5,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -37,6 +38,7 @@ public class Journalist implements Serializable {
     public Journalist(String name, Publisher publisher) {
         this.name = name;
         this.publisher = publisher;
+        this.stories = new ArrayList<Story>();
     }
 
     public Journalist() {

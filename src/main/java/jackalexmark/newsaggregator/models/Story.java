@@ -5,6 +5,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,6 +30,7 @@ public class Story implements Serializable {
 
     public Story(String title){
         this.title = title;
+        this.journalists = new ArrayList<Journalist>();
     }
 
     public Story(){
