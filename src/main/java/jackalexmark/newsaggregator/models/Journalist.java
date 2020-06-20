@@ -5,6 +5,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="journalists")
@@ -22,6 +23,16 @@ public class Journalist implements Serializable {
     @JoinColumn(name = "publisher_id", nullable = false)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Publisher publisher;
+
+    @JsonIgnoreProperties(value = "journalist")
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "journalists_stories",
+            joinColumns = {@JoinColumn(name = "journalist_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name="story_id", nullable = false, updatable = false)}
+    )
+    private List<Story> stories;
 
     public Journalist(String name, Publisher publisher) {
         this.name = name;
@@ -54,5 +65,17 @@ public class Journalist implements Serializable {
 
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
+    }
+
+    public List<Story> getStories() {
+        return stories;
+    }
+
+    public void setStories(List<Story> stories) {
+        this.stories = stories;
+    }
+
+    public void addStory(Story story){
+        this.stories.add(story);
     }
 }

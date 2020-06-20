@@ -5,10 +5,13 @@ import java.io.Serializable;
 
 @Entity
 @Table(name ="sources")
+//this is our class declaration it tells us what our class is and what word we'd use to call this class
 public class Source implements Serializable {
 
     @Id
     @GeneratedValue
+//    this section declares that the source object has a property id which is of type Long, the annotations connect
+//    the property to our database and mean that each time a source object is saved, it has a unique id
     private Long id;
 
     @Column(name ="sourceTitle")
@@ -20,6 +23,7 @@ public class Source implements Serializable {
     @Column(name ="sourceLink")
     private String sourceLink;
 
+    // this is our constructor - it builds the object with the class Source
     public Source(String sourceTitle, String sourceImg, String sourceLink){
         this.sourceTitle = sourceTitle;
         this.sourceImg = sourceImg;

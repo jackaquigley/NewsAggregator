@@ -73,6 +73,7 @@ class NewsaggregatorApplicationTests {
 	@Test
 	public void canCreateAndSaveJournalist(){
 		Publisher publisher = new Publisher("Financial Times");
+		Story story = new Story("Title");
 		Journalist journalist = new Journalist("Sam Smith", publisher);
 		publisherRepository.save(publisher);
 		journalistRepository.save(journalist);
@@ -87,6 +88,21 @@ class NewsaggregatorApplicationTests {
 	@Test
 	public void canCreateAndSaveStory(){
 		Story story = new Story("HeadLine");
+		storyRepository.save(story);
+	}
+
+	@Test
+	public void canAddJournalistToStory(){
+		Publisher publisher = new Publisher("Financial Times");
+		publisherRepository.save(publisher);
+		Story story = new Story("Title");
+		storyRepository.save(story);
+		Journalist journalist = new Journalist("Sam Smith", publisher);
+		journalistRepository.save(journalist);
+
+		story.addJournalist(journalist);
+		journalist.addStory(story);
+		journalistRepository.save(journalist);
 		storyRepository.save(story);
 	}
 
