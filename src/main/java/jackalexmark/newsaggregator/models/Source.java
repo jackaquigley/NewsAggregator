@@ -5,6 +5,8 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name ="sources")
@@ -35,6 +37,15 @@ public class Source implements Serializable {
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Story story;
 
+    @JsonIgnoreProperties(value = "journalists_stories")
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            joinColumns = {@JoinColumn(name = "source_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "journalist_id", nullable = false, updatable = false)}
+    )
+    private List<Journalist> journalists;
+
     // this is our constructor - it builds the object with the class Source
     public Source(String sourceTitle, String sourceImg, String sourceLink, Story story, int rating) {
         this.sourceTitle = sourceTitle;
@@ -42,6 +53,7 @@ public class Source implements Serializable {
         this.sourceLink = sourceLink;
         this.story = story;
         this.rating = rating;
+        this.journalists = new ArrayList<Journalist>();
     }
 
     public String getSourceTitle() {
@@ -98,5 +110,17 @@ public class Source implements Serializable {
 
     public int decreaseRating(){
         return this.rating -= 1;
+    }
+
+    public List<Journalist> getJournalists() {
+        return journalists;
+    }
+
+    public void setJournalists(List<Journalist> journalists) {
+        this.journalists = journalists;
+    }
+
+    public void addJournalist(Journalist journalist){
+        this.journalists.add(journalist);
     }
 }

@@ -31,14 +31,14 @@ public class Journalist implements Serializable {
     @JoinTable(
             name = "journalists_stories",
             joinColumns = {@JoinColumn(name = "journalist_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name="story_id", nullable = false, updatable = false)}
+            inverseJoinColumns = {@JoinColumn(name="source_id", nullable = false, updatable = false)}
     )
-    private List<Story> stories;
+    private List<Source> sources;
 
     public Journalist(String name, Publisher publisher) {
         this.name = name;
         this.publisher = publisher;
-        this.stories = new ArrayList<Story>();
+        this.sources = new ArrayList<Source>();
     }
 
     public Journalist() {
@@ -69,15 +69,15 @@ public class Journalist implements Serializable {
         this.publisher = publisher;
     }
 
-    public List<Story> getStories() {
-        return stories;
+    public List<Source> getSources() {
+        return sources;
     }
 
-    public void setStories(List<Story> stories) {
-        this.stories = stories;
+    public void setSources(List<Source> source) {
+        this.sources = sources;
     }
 
-    public void addStory(Story story){
-        this.stories.add(story);
+    public void addSource(Source source){
+        this.sources.add(source);
     }
 }

@@ -19,35 +19,17 @@ public class Story implements Serializable {
     @Column(name = "title")
     private String title;
 
-    @JsonIgnoreProperties(value = "journalists_stories")
-    @ManyToMany
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinTable(
-            joinColumns = {@JoinColumn(name = "story_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "journalist_id", nullable = false, updatable = false)}
-    )
-    private List<Journalist> journalists;
-
     @JsonIgnoreProperties(value="story")
     @OneToMany(mappedBy = "story", fetch = FetchType.LAZY)
     private List<Source> sources;
 
     public Story(String title){
         this.title = title;
-        this.journalists = new ArrayList<Journalist>();
         this.sources = new ArrayList<Source>();
     }
 
     public Story(){
 
-    }
-
-    public List<Journalist> getJournalists() {
-        return journalists;
-    }
-
-    public void setJournalists(List<Journalist> journalists) {
-        this.journalists = journalists;
     }
 
     public Long getId() {
@@ -64,10 +46,6 @@ public class Story implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public void addJournalist(Journalist journalist){
-        this.journalists.add(journalist);
     }
 
     public List<Source> getSources() {

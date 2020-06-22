@@ -124,11 +124,11 @@ class NewsaggregatorApplicationTests {
 		storyRepository.save(story);
 		Journalist journalist = new Journalist("Sam Smith", publisher);
 		journalistRepository.save(journalist);
+		Source source = new Source("Title Of Source", "Link to IMG", "Link to Source", story, 3);
+		sourceRepository.save(source);
 
-		story.addJournalist(journalist);
-		journalist.addStory(story);
-		journalistRepository.save(journalist);
-		storyRepository.save(story);
+		source.addJournalist(journalist);
+		journalist.addSource(source);
 	}
 
 }
