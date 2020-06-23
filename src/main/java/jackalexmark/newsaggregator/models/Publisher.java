@@ -18,13 +18,9 @@ public class Publisher implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @JsonIgnoreProperties(value="publisher")
-    @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY)
-    private List<Journalist> journalists;
-
 
     public Publisher(String name) {
-        this.name = name;
+        this.na me = name;
     }
 
     public Publisher(){
@@ -47,12 +43,5 @@ public class Publisher implements Serializable {
         this.id = id;
     }
 
-    public List<Journalist> getJournalists() {
-        return journalists;
-    }
-
-    public void setJournalists(List<Journalist> journalists) {
-        this.journalists = journalists;
-    }
 
 }
