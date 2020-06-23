@@ -19,41 +19,38 @@ public class Source implements Serializable {
 //    the property to our database and mean that each time a source object is saved, it has a unique id
     private Long id;
 
-    @Column(name ="sourceTitle")
+    @Column(name = "sourceTitle")
     private String sourceTitle;
 
-    @Column(name ="sourceImg")
+    @Column(name = "sourceImg")
     private String sourceImg;
 
-    @Column(name ="sourceLink")
+    @Column(name = "sourceLink")
     private String sourceLink;
 
-    @Column(name="rating")
+    @Column(name = "rating")
     private int rating;
 
-    @JsonIgnoreProperties(value="source")
+    @JsonIgnoreProperties(value = "source")
     @ManyToOne
     @JoinColumn(name = "story_id", nullable = false)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Story story;
 
-    @JsonIgnoreProperties(value = "journalists_stories")
-    @ManyToMany
+    @JsonIgnoreProperties(value = "source")
+    @ManyToOne
+    @JoinColumn(name = "publisher_id", nullable = false)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @JoinTable(
-            joinColumns = {@JoinColumn(name = "source_id", nullable = false, updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "journalist_id", nullable = false, updatable = false)}
-    )
-    private List<Journalist> journalists;
+    private Publisher publisher;
 
     // this is our constructor - it builds the object with the class Source
-    public Source(String sourceTitle, String sourceImg, String sourceLink, Story story, int rating) {
+    public Source(String sourceTitle, String sourceImg, String sourceLink, Story story, int rating, Publisher publisher) {
         this.sourceTitle = sourceTitle;
         this.sourceImg = sourceImg;
         this.sourceLink = sourceLink;
         this.story = story;
         this.rating = rating;
-        this.journalists = new ArrayList<Journalist>();
+        this.publisher = publisher;
     }
 
     public String getSourceTitle() {
@@ -104,23 +101,24 @@ public class Source implements Serializable {
         this.rating = rating;
     }
 
-    public int increaseRating(){
+    public int increaseRating() {
         return this.rating += 1;
     }
 
-    public int decreaseRating(){
+    public int decreaseRating() {
         return this.rating -= 1;
     }
 
-    public List<Journalist> getJournalists() {
-        return journalists;
+    public Publisher getPublisher() {
+        return publisher;
     }
 
-    public void setJournalists(List<Journalist> journalists) {
-        this.journalists = journalists;
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
 
-    public void addJournalist(Journalist journalist){
-        this.journalists.add(journalist);
+    public Source(){
+
     }
+
 }
