@@ -31,7 +31,7 @@ public class Source implements Serializable {
     @Column(name = "rating")
     private int rating;
 
-    @JsonIgnoreProperties(value = "source")
+    @JsonIgnoreProperties(value = "story")
     @ManyToOne
     @JoinColumn(name = "story_id", nullable = false)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)

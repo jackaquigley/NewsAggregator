@@ -20,7 +20,7 @@ public class Publisher implements Serializable {
 
 
     public Publisher(String name) {
-        this.na me = name;
+        this.name = name;
     }
 
     public Publisher(){
