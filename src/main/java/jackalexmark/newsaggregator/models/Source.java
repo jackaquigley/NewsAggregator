@@ -1,5 +1,6 @@
 package jackalexmark.newsaggregator.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
@@ -31,13 +32,13 @@ public class Source implements Serializable {
     @Column(name = "rating")
     private int rating;
 
-    @JsonIgnoreProperties(value = "story")
+    @JsonIgnore(value = true)
     @ManyToOne
     @JoinColumn(name = "story_id", nullable = false)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Story story;
 
-    @JsonIgnoreProperties(value = "source")
+    @JsonIgnore(value = true)
     @ManyToOne
     @JoinColumn(name = "publisher_id", nullable = false)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)

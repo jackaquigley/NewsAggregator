@@ -1,15 +1,14 @@
 package jackalexmark.newsaggregator.models;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @Table(name ="publishers")
-public class Publisher implements Serializable {
+public class Publisher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +17,9 @@ public class Publisher implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @JsonIgnoreProperties(value="publisher")
+    @OneToMany(mappedBy = "publisher", fetch = FetchType.LAZY)
+    private List<Source> sources;
 
     public Publisher(String name) {
         this.name = name;
@@ -33,6 +35,14 @@ public class Publisher implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Source> getSources() {
+        return sources;
+    }
+
+    public void setSources(List<Source> sources) {
+        this.sources = sources;
     }
 
     public Long getId() {
