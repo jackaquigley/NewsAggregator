@@ -32,7 +32,7 @@ class NewsaggregatorApplicationTests {
 		Publisher publisher1 = new Publisher("The Fun");
 		publisherRepository.save(publisher1);
 
-		Source source1 = new Source("Prime Minister Caught Doing Thing!", "https://upload.wikimedia.org/wikipedia/commons/e/eb/Boris_Johnson_in_2018.jpg", "https://www.google.com", story1, 98, publisher1);
+		Source source1 = new Source("Prime Minister Caught Doing Thing!", "https://upload.wikimedia.org/wikipedia/commons/e/eb/Boris_Johnson_in_2018.jpg", "https://www.google.com", story1, 98, publisher1, "Journalist Name");
 		sourceRepository.save(source1);
 	}
 

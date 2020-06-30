@@ -1,8 +1,10 @@
 package jackalexmark.newsaggregator.components;
 
+import jackalexmark.newsaggregator.models.Comment;
 import jackalexmark.newsaggregator.models.Publisher;
 import jackalexmark.newsaggregator.models.Source;
 import jackalexmark.newsaggregator.models.Story;
+import jackalexmark.newsaggregator.repository.CommentRepository;
 import jackalexmark.newsaggregator.repository.PublisherRepository;
 import jackalexmark.newsaggregator.repository.SourceRepository;
 import jackalexmark.newsaggregator.repository.StoryRepository;
@@ -23,6 +25,9 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     SourceRepository sourceRepository;
 
+    @Autowired
+    CommentRepository commentRepository;
+
     public DataLoader() {
 
     }
@@ -35,11 +40,15 @@ public class DataLoader implements ApplicationRunner {
         Publisher publisher1 = new Publisher("The Fun");
         publisherRepository.save(publisher1);
 
-        Source source1 = new Source("Prime Minister Caught Doing Thing!", "https://upload.wikimedia.org/wikipedia/commons/e/eb/Boris_Johnson_in_2018.jpg", "https://www.google.com", story1, 98, publisher1);
+        Source source1 = new Source("Prime Minister Caught Doing Thing!", "https://upload.wikimedia.org/wikipedia/commons/e/eb/Boris_Johnson_in_2018.jpg", "https://www.google.com", story1, 98, publisher1, "Sam Smith");
         sourceRepository.save(source1);
 
-        Source source2 = new Source("Prime Minister - Is He Doing The Thing? - Opinion", "https://upload.wikimedia.org/wikipedia/commons/e/eb/Boris_Johnson_in_2018.jpg", "https://www.google.com", story1, 76, publisher1);
+        Source source2 = new Source("Prime Minister - Is He Doing The Thing? - Opinion", "https://upload.wikimedia.org/wikipedia/commons/e/eb/Boris_Johnson_in_2018.jpg", "https://www.google.com", story1, 76, publisher1, "Sam Smith");
         sourceRepository.save(source2);
-;
+
+        Comment comment1 = new Comment("So", "S", source2);
+        commentRepository.save(comment1);
+
+        ;
     }
 }

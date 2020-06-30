@@ -3,16 +3,13 @@ package jackalexmark.newsaggregator.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name ="sources")
 //this is our class declaration it tells us what our class is and what word we'd use to call this class
-public class Source implements Serializable {
+public class Source {
 
     @Id
     @GeneratedValue
@@ -32,6 +29,9 @@ public class Source implements Serializable {
     @Column(name = "rating")
     private int rating;
 
+    @Column(name = "journalist")
+    private String journalist;
+
     @JsonIgnore(value = true)
     @ManyToOne
     @JoinColumn(name = "story_id", nullable = false)
@@ -44,14 +44,19 @@ public class Source implements Serializable {
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Publisher publisher;
 
+    @JsonIgnoreProperties(value = "source")
+    @OneToMany(mappedBy = "source", fetch = FetchType.LAZY)
+    private List<Comment> comments;
+
     // this is our constructor - it builds the object with the class Source
-    public Source(String sourceTitle, String sourceImg, String sourceLink, Story story, int rating, Publisher publisher) {
+    public Source(String sourceTitle, String sourceImg, String sourceLink, Story story, int rating, Publisher publisher, String journalist) {
         this.sourceTitle = sourceTitle;
         this.sourceImg = sourceImg;
         this.sourceLink = sourceLink;
         this.story = story;
         this.rating = rating;
         this.publisher = publisher;
+        this.journalist = journalist;
     }
 
     public String getSourceTitle() {
@@ -116,6 +121,22 @@ public class Source implements Serializable {
 
     public void setPublisher(Publisher publisher) {
         this.publisher = publisher;
+    }
+
+    public String getJournalist() {
+        return journalist;
+    }
+
+    public void setJournalist(String journalist) {
+        this.journalist = journalist;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public Source(){
