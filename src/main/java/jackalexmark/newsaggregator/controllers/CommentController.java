@@ -1,3 +1,5 @@
+package jackalexmark.newsaggregator.controllers;
+
 import jackalexmark.newsaggregator.models.Comment;
 import jackalexmark.newsaggregator.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
