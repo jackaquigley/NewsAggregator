@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
         private static final String CORS_BASE_PATTERN = "/**";
         private static final String ALLOWED_ORIGINS = "*";
-        private static final String ALLOWED_HEADERS = "*";
+        private static final String ALLOWED_HEADERS = "/api/**";
         private static final String ALLOWED_METHODS = "*";
 
         @Override

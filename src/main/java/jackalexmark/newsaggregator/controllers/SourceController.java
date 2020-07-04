@@ -14,6 +14,7 @@ public class SourceController {
     @Autowired
     SourceRepository sourceRepository;
 
+    @CrossOrigin(origins = "http://localhost:8080/api")
     @GetMapping(value = "/sources")
     public ResponseEntity<List<Source>> getAllSources(){
         return new ResponseEntity<>(sourceRepository.findAll(), HttpStatus.OK);
