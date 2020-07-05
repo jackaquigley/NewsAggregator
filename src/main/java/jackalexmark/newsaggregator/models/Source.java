@@ -32,13 +32,13 @@ public class Source {
     @Column(name = "journalist")
     private String journalist;
 
-    @JsonIgnoreProperties(value = "story")
+    @JsonIgnore(value = true)
     @ManyToOne
     @JoinColumn(name = "story_id", nullable = false)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Story story;
 
-    @JsonIgnoreProperties(value = "publisher")
+    @JsonIgnoreProperties(value = "source")
     @ManyToOne
     @JoinColumn(name = "publisher_id", nullable = false)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
