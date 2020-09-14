@@ -38,7 +38,7 @@ public class Source {
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Story story;
 
-    @JsonIgnore(value = true)
+    @JsonIgnoreProperties({"source"})
     @ManyToOne
     @JoinColumn(name = "publisher_id", nullable = false)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
