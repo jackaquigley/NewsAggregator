@@ -1,6 +1,7 @@
 package jackalexmark.newsaggregator.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -19,7 +20,7 @@ public class Comment {
     @Column(name = "username")
     private String username;
 
-    @JsonIgnore(value = true)
+    @JsonIgnoreProperties({"comments"})
     @ManyToOne
     @JoinColumn(name = "source_id", nullable = false)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
