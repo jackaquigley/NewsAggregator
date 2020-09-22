@@ -25,4 +25,19 @@ public class SourceController {
     public ResponseEntity<Source> getSource(@PathVariable Long id) {
         return new ResponseEntity(sourceRepository.findById(id), HttpStatus.OK);
     }
+
+    @PutMapping(value="/sources/{id}")
+    public ResponseEntity<Source> putSource(@RequestBody Source source, @PathVariable Long id){
+        Source sourceToUpdate = sourceRepository.findById(id).get();
+        sourceToUpdate.setSourceTitle(source.getSourceTitle());
+        sourceToUpdate.setSourceImg(source.getSourceImg());
+        sourceToUpdate.setSourceLink(source.getSourceLink());
+        sourceToUpdate.setPublisher(source.getPublisher());
+        sourceToUpdate.setRating(source.getRating());
+        sourceToUpdate.setJournalist(source.getJournalist());
+        sourceToUpdate.setStory(source.getStory());
+        sourceToUpdate.setComments(source.getComments());
+        sourceRepository.save(sourceToUpdate);
+        return new ResponseEntity<>(sourceToUpdate, HttpStatus.OK);
+    }
 }
