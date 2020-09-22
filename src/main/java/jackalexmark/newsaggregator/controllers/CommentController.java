@@ -7,11 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-<<<<<<< HEAD
-
-=======
->>>>>>> a986bb84715fe0f6e1168f002e5684902979e75f
-
 import java.util.List;
 
 @RestController

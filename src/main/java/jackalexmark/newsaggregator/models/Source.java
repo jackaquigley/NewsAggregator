@@ -35,27 +35,13 @@ public class Source {
     @Column(name = "journalist")
     private String journalist;
 
-<<<<<<< HEAD
-    @JsonIgnoreProperties(value = "story")
-=======
->>>>>>> a986bb84715fe0f6e1168f002e5684902979e75f
     @ManyToOne
     @JsonIgnoreProperties({"sources"})
     @JoinColumn(name = "story_id", nullable = false)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Story story;
 
-<<<<<<< HEAD
-    @JsonIgnoreProperties(value = "publisher")
-    @ManyToOne
-    @JoinColumn(name = "publisher_id", nullable = false)
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    private Publisher publisher;
-
-    @JsonIgnoreProperties(value = "source")
-=======
     @JsonIgnoreProperties({"source"})
->>>>>>> a986bb84715fe0f6e1168f002e5684902979e75f
     @OneToMany(mappedBy = "source", fetch = FetchType.LAZY)
     private List<Comment> comments;
 
