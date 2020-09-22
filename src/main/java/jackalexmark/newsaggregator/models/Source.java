@@ -26,18 +26,26 @@ public class Source {
     @Column(name = "sourceLink")
     private String sourceLink;
 
+    @Column(name = "publisher")
+    private String publisher;
+
     @Column(name = "rating")
     private int rating;
 
     @Column(name = "journalist")
     private String journalist;
 
+<<<<<<< HEAD
     @JsonIgnoreProperties(value = "story")
+=======
+>>>>>>> a986bb84715fe0f6e1168f002e5684902979e75f
     @ManyToOne
+    @JsonIgnoreProperties({"sources"})
     @JoinColumn(name = "story_id", nullable = false)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     private Story story;
 
+<<<<<<< HEAD
     @JsonIgnoreProperties(value = "publisher")
     @ManyToOne
     @JoinColumn(name = "publisher_id", nullable = false)
@@ -45,17 +53,20 @@ public class Source {
     private Publisher publisher;
 
     @JsonIgnoreProperties(value = "source")
+=======
+    @JsonIgnoreProperties({"source"})
+>>>>>>> a986bb84715fe0f6e1168f002e5684902979e75f
     @OneToMany(mappedBy = "source", fetch = FetchType.LAZY)
     private List<Comment> comments;
 
     // this is our constructor - it builds the object with the class Source
-    public Source(String sourceTitle, String sourceImg, String sourceLink, Story story, int rating, Publisher publisher, String journalist) {
+    public Source(String sourceTitle, String sourceImg, String sourceLink, String publisher, Story story, int rating, String journalist) {
         this.sourceTitle = sourceTitle;
         this.sourceImg = sourceImg;
         this.sourceLink = sourceLink;
+        this.publisher = publisher;
         this.story = story;
         this.rating = rating;
-        this.publisher = publisher;
         this.journalist = journalist;
     }
 
@@ -82,6 +93,10 @@ public class Source {
     public void setSourceLink(String sourceLink) {
         this.sourceLink = sourceLink;
     }
+
+    public String getPublisher() { return publisher; }
+
+    public void setPublisher(String publisher) { this.publisher = publisher; }
 
     public Long getId() {
         return id;
@@ -113,14 +128,6 @@ public class Source {
 
     public int decreaseRating() {
         return this.rating -= 1;
-    }
-
-    public Publisher getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(Publisher publisher) {
-        this.publisher = publisher;
     }
 
     public String getJournalist() {

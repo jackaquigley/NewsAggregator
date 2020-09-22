@@ -17,7 +17,7 @@ public class Story implements Serializable {
     @Column(name = "title")
     private String title;
 
-    @JsonIgnoreProperties(value="story")
+    @JsonIgnoreProperties({"story"})
     @OneToMany(mappedBy = "story", fetch = FetchType.LAZY)
     private List<Source> sources;
 

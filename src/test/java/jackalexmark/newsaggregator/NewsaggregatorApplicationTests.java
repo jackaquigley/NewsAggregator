@@ -12,9 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class NewsaggregatorApplicationTests {
 
 	@Autowired
-	PublisherRepository publisherRepository;
-
-	@Autowired
 	SourceRepository sourceRepository;
 
 	@Autowired
@@ -29,10 +26,7 @@ class NewsaggregatorApplicationTests {
 		Story story1  = new Story("Prime Minister Does Thing!");
 		storyRepository.save(story1);
 
-		Publisher publisher1 = new Publisher("The Fun");
-		publisherRepository.save(publisher1);
-
-		Source source1 = new Source("Prime Minister Caught Doing Thing!", "https://upload.wikimedia.org/wikipedia/commons/e/eb/Boris_Johnson_in_2018.jpg", "https://www.google.com", story1, 98, publisher1, "Journalist Name");
+		Source source1 = new Source("Prime Minister Caught Doing Thing!", "https://upload.wikimedia.org/wikipedia/commons/e/eb/Boris_Johnson_in_2018.jpg", "https://www.google.com", "The Fun",  story1, 4,  "Journalist Name");
 		sourceRepository.save(source1);
 	}
 
