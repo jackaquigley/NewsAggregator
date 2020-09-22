@@ -1,7 +1,6 @@
 package jackalexmark.newsaggregator.components;
 
 import jackalexmark.newsaggregator.models.Comment;
-import jackalexmark.newsaggregator.models.Publisher;
 import jackalexmark.newsaggregator.models.Source;
 import jackalexmark.newsaggregator.models.Story;
 import jackalexmark.newsaggregator.repository.CommentRepository;
