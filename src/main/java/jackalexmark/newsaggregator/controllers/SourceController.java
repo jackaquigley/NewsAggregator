@@ -20,4 +20,9 @@ public class SourceController {
         return new ResponseEntity<>(sourceRepository.findAll(), HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:8080/api")
+    @GetMapping(value="/sources/{id}")
+    public ResponseEntity<Source> getSource(@PathVariable Long id) {
+        return new ResponseEntity(sourceRepository.findById(id), HttpStatus.OK);
+    }
 }
