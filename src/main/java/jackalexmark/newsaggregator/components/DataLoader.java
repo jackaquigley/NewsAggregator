@@ -38,13 +38,16 @@ public class DataLoader implements ApplicationRunner {
         Source source2 = new Source("Prime Minister - Is He Doing The Thing? - Opinion", "https://upload.wikimedia.org/wikipedia/commons/e/eb/Boris_Johnson_in_2018.jpg", "https://www.google.com","The Fun", story1, 76, "Adele");
         sourceRepository.save(source2);
 
+        Source source3 = new Source("Prime Minister Announces Press Conference", "https://upload.wikimedia.org/wikipedia/commons/7/7a/Boris_Johnson_%28cropped%29.jpg", "https://www.google.com", "ANC", story1, 111, "Mabel");
+        sourceRepository.save(source3);
+
         Comment comment1 = new Comment("So like the fun to make something out of nothing", "Starlight", source2);
         commentRepository.save(comment1);
 
         Comment comment2 = new Comment("Who doesn't?", "ANC_READER", source2);
         commentRepository.save(comment2);
 
-        Comment comment3 = new Comment( "So the photograph on tweeter is real?", "StMirrenSupp", source1);
+        Comment comment3 = new Comment( "So the photograph on tweeter is real?", "StMirrenSupp", source3);
         commentRepository.save(comment3);
 
     }
