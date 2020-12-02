@@ -1,7 +1,6 @@
 package jackalexmark.newsaggregator.controllers;
 
 import jackalexmark.newsaggregator.models.Comment;
-import jackalexmark.newsaggregator.models.Story;
 import jackalexmark.newsaggregator.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

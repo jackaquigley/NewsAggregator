@@ -26,6 +26,7 @@ public class SourceController {
         return new ResponseEntity(sourceRepository.findById(id), HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:8080/api")
     @PutMapping(value="/sources/{id}")
     public ResponseEntity<Source> putSource(@RequestBody Source source, @PathVariable Long id){
         Source sourceToUpdate = sourceRepository.findById(id).get();
