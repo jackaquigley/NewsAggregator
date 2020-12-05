@@ -11,6 +11,9 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Array;
+import java.util.*;
+
 @Component
 public class DataLoader implements ApplicationRunner {
 
@@ -23,13 +26,19 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     CommentRepository commentRepository;
 
+
     public DataLoader() {
 
     }
 
     public void run(ApplicationArguments args) {
 
-        Story story1  = new Story("Prime Minister Does Thing!");
+        Set<String> story1Tags = new HashSet<String>();
+        story1Tags.add("UK News");
+        story1Tags.add("Politics");
+
+        Story story1  = new Story("Prime Minister Does Thing!", story1Tags);
+
         storyRepository.save(story1);
 
         Source source1 = new Source("Prime Minister Caught Doing Thing!", "https://upload.wikimedia.org/wikipedia/commons/e/eb/Boris_Johnson_in_2018.jpg", "https://www.google.com", "The Fun", story1, 98, "Sam Smith");

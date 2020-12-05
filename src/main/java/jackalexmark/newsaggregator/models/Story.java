@@ -2,13 +2,13 @@ package jackalexmark.newsaggregator.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "stories")
-public class Story implements Serializable {
+public class Story  {
 
     @Id
     @GeneratedValue
@@ -21,9 +21,14 @@ public class Story implements Serializable {
     @OneToMany(mappedBy = "story", fetch = FetchType.LAZY)
     private List<Source> sources;
 
-    public Story(String title){
+    @ElementCollection
+    @CollectionTable(name ="storyTags", joinColumns = @JoinColumn(name ="story_id"))
+    @Column(name ="tag")
+    private Set<String> tags = new HashSet<>();
+
+    public Story(String title, Set<String> tags){
         this.title = title;
-        this.sources = new ArrayList<Source>();
+        this.tags = tags;
     }
 
     public Story(){
@@ -52,6 +57,14 @@ public class Story implements Serializable {
 
     public void setSources(List<Source> sources) {
         this.sources = sources;
+    }
+
+    public Set<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<String> tags) {
+        this.tags = tags;
     }
 
 }
