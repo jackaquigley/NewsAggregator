@@ -19,6 +19,9 @@ class NewsaggregatorApplicationTests {
 
 	@Test
 	void contextLoads() {
+
+
+
 	}
 
 

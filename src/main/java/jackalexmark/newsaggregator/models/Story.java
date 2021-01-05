@@ -21,14 +21,12 @@ public class Story  {
     @OneToMany(mappedBy = "story", fetch = FetchType.LAZY)
     private List<Source> sources;
 
-    @ElementCollection
-    @CollectionTable(name ="storyTags", joinColumns = @JoinColumn(name ="story_id"))
-    @Column(name ="tag")
-    private Set<String> tags = new HashSet<>();
+    @JsonIgnoreProperties({"story"})
+    @OneToMany(mappedBy = "story", fetch = FetchType.LAZY)
+    private List<Tag> tags;
 
-    public Story(String title, Set<String> tags){
+    public Story(String title){
         this.title = title;
-        this.tags = tags;
     }
 
     public Story(){
@@ -59,11 +57,11 @@ public class Story  {
         this.sources = sources;
     }
 
-    public Set<String> getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(Set<String> tags) {
+    public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
 

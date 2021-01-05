@@ -23,9 +23,16 @@ public class StoryController {
     }
 
     @CrossOrigin(origins = "http://localhost:8080/api")
+    @GetMapping(value="/stories/tagSearch/{name}")
+    public ResponseEntity<Story> getAllStoriesByTagName(@PathVariable String name) {
+        return new ResponseEntity(storyRepository.findByTagsNameIgnoreCase(name), HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:8080/api")
     @GetMapping(value="/stories/{id}")
     public ResponseEntity<Story> getStory(@PathVariable Long id) {
         return new ResponseEntity(storyRepository.findById(id), HttpStatus.OK);
     }
+
 
 }
